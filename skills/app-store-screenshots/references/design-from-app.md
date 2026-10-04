@@ -33,6 +33,17 @@ From this, choose:
 
 **Separation:** the device must stand out. If the app's screens are mostly white, avoid a white background; use a tint.
 
+### A background picture
+
+If the app has strong imagery (a hero photo, an illustration or texture in its asset catalog or marketing folder), or the user asks for one, put it behind every screenshot with `set_design`:
+
+- `background_picture`: `{ "path": "<absolute path inside the project>" }` (or `{ "data": "<base64>", "name": "…" }`). It fills each screenshot (a spread's whole width) and replaces the gradient.
+- `background_dim` (0–80) and `background_blur` (0–40): busy or bright pictures need some of both so the headline stays readable; start around dim 25, blur 8, and check `preview_set`.
+- Use `"pattern": "none"` with a picture unless the user wants both.
+- `remove_background_picture: true` goes back to the gradient.
+
+Only use pictures from the app's own project or ones the user gave you.
+
 ## 3. Pattern
 
 `pattern` and `pattern_strength` (0–100). Keep it subtle (15–30) so it adds texture without competing with the screen. See `list_patterns` for the ids. Some ideas:
@@ -49,7 +60,13 @@ First find the app's type:
 - `UIAppFonts` in `Info.plist`;
 - the font files in the project.
 
-If the app uses a font that `list_fonts` has, use it. Otherwise pick the nearest from `list_fonts`:
+Then choose, in this order:
+
+1. **Twixit's own copy of the font**, if `list_fonts` has it.
+2. **The app's font installed on this Mac:** `list_fonts` with `source: "mac"` lists every installed family by name; use the name as the font id. If the app bundles its font but it isn't installed, tell the user they can install it (double-click the font file) to use it.
+3. **The nearest Twixit font** from the table below. These look the same on every Mac, so prefer them when the project will be shared.
+
+A Mac font is saved by name: on a Mac without it, the text shows in the system font.
 
 | The app feels… | Headline | Supporting |
 |---|---|---|
