@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "twixit": {
+      "command": "/bin/sh",
+      "args": [
+        "-c",
+        "APP=/Applications/Twixit.app; [ -x \"$APP/Contents/Helpers/twixit\" ] || APP=$(/usr/bin/mdfind \"kMDItemCFBundleIdentifier == 'com.webzler.Twixit'\" | /usr/bin/head -n 1); if [ -z \"$APP\" ] || [ ! -x \"$APP/Contents/Helpers/twixit\" ]; then echo 'Twixit is not installed. Get it from the Mac App Store, then turn on Settings > Automation.' >&2; exit 1; fi; exec \"$APP/Contents/Helpers/twixit\" mcp"
+      ]
+    }
+  }
+}
