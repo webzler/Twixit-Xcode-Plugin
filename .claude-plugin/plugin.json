@@ -5,7 +5,7 @@
   "author": {
     "name": "Webzler Solutions Inc."
   },
-  "homepage": "https://github.com/amitrathiesh/Twixit-Xcode-Plugin",
-  "repository": "https://github.com/amitrathiesh/Twixit-Xcode-Plugin",
+  "homepage": "https://github.com/webzler/Twixit-Xcode-Plugin",
+  "repository": "https://github.com/webzler/Twixit-Xcode-Plugin",
   "keywords": ["app store", "screenshots", "marketing", "fastlane", "localization"]
 }

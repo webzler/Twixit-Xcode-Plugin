@@ -23,10 +23,10 @@ Makes App Store screenshots for the app you're building, with [Twixit](https://t
 
 - **From Twixit (easiest):** open Twixit › Settings › Automation and click **Set Up Xcode Agent…**. Twixit turns on automation and opens Xcode's plug-in installer; click **Install**.
 - **One-click link:** open
-  `xcode://agent-plugin-clone?repo=https%3A%2F%2Fgithub.com%2Famitrathiesh%2FTwixit-Xcode-Plugin`
+  `xcode://agent-plugin-clone?repo=https%3A%2F%2Fgithub.com%2Fwebzler%2FTwixit-Xcode-Plugin`
   with Xcode 27 or later running.
 - **Manually in Xcode:** Settings › Intelligence › Plug-ins › **Add Plug-in…** › **Add from URL**, and enter
-  `https://github.com/amitrathiesh/Twixit-Xcode-Plugin`.
+  `https://github.com/webzler/Twixit-Xcode-Plugin`.
 - **Offline:** in Twixit, choose **Save Plug-in Folder…**, then use **Add from file** in the same Xcode sheet.
 - **Other agents** that support plug-ins: add this repository as a plug-in source.
 
