@@ -47,9 +47,9 @@ Good captures make good screenshots. Aim for a clean status bar, realistic conte
    - or `screencapture -o -w <file>.png`, which needs the user to click the window.
 
    Twixit trims the transparent shadow around window captures automatically.
-3. For a Mac set, use `create_set` with `device: "mac"`. Twixit puts the window on a MacBook screen.
+3. For a Mac set, use `manage_project` (`action: "create"`) with `device: "mac"`. Twixit puts the window on a MacBook screen.
 
 ## Order and count
 
 - Use 3 to 6 screenshots. Put the core action first, then depth (features), then delight (polish, personalization, widgets).
-- Name captures in order (`01-…`, `02-…`) and pass them to `add_screenshots` in that order.
+- Name captures in order (`01-…`, `02-…`) and pass them to `edit_set` (`screenshots`) in that order.

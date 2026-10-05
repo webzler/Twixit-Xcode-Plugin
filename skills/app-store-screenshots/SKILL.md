@@ -1,6 +1,7 @@
 ---
 name: app-store-screenshots
 description: Make App Store screenshots for the app in this project with Twixit — capture the app's key screens, write a headline and supporting text for each, match the app's colours and fonts, preview, and export every size and language (for example into fastlane/screenshots). Use when the user asks for App Store screenshots, store images, marketing screenshots, or screenshot copy.
+allowed-tools: mcp__plugin_twixit_twixit__get_info, mcp__plugin_twixit_twixit__request_folder_access, mcp__plugin_twixit_twixit__manage_project, mcp__plugin_twixit_twixit__edit_set, mcp__plugin_twixit_twixit__preview_set, mcp__plugin_twixit_twixit__export_set
 ---
 
 # App Store screenshots with Twixit
@@ -11,7 +12,7 @@ Work through the steps in order. Show the user a preview before exporting, and a
 
 ## 1. Check Twixit is ready
 
-Call `get_status`.
+Call `get_info`.
 
 - **The twixit tools aren't available, or the call fails with `app_unavailable`:** Twixit isn't installed or couldn't start. Tell the user to install Twixit from the Mac App Store. Don't try to install anything yourself.
 - **`automation_off`:** ask the user to open Twixit › Settings › Automation and turn on **Allow automation**, then try again.
@@ -43,16 +44,17 @@ Save the captures inside the granted project folder, for example `<project>/fast
 
 ## 5. Build the set
 
-1. `list_starters` and `list_fonts` (and `list_patterns` if you want a specific one).
-2. `create_set`:
+1. `get_info` with `include: ["starters", "fonts"]` (add `"patterns"` if you want a specific one).
+2. `manage_project` with `action: "create"`:
    - `device`: `iphone`, `ipad` or `mac`. Use one set per device.
    - `language`: the primary language.
    - `starter`: the starter whose mood is closest to the app.
    - `path`: `<project>/fastlane/Screenshots.twixit`, so the user can open and refine it later.
-3. `add_screenshots`: the captures in story order, as paths. Twixit fills screenshot 1, 2, 3… in that order and varies the device angles.
-4. `set_design`: the app's colours, pattern and finish (see [design-from-app.md](references/design-from-app.md)).
-5. `set_copy`: once per screenshot, with `slides: [n]`, `headline` and `supporting`, following [copywriting.md](references/copywriting.md). Set the fonts once with `headline_style` and `supporting_style`, plus `text_color` if needed. **Always pass `slides`**: without it, the text goes on every screenshot.
-6. **Other languages:** call `set_copy` again with `locale` for each one. Translate the meaning and keep the lengths within the limits; never machine-copy the English.
+3. `edit_set` does the rest, in one call or several. Its sections are applied in this order:
+   - `screenshots`: the captures in story order, as paths. Twixit fills screenshot 1, 2, 3… in that order and varies the device angles.
+   - `design`: the app's colours, pattern and finish (see [design-from-app.md](references/design-from-app.md)).
+   - `copy`: a list with one entry per screenshot, each with `slides: [n]`, `headline` and `supporting`, following [copywriting.md](references/copywriting.md). Set the fonts once, in any entry, with `headline_style` and `supporting_style`, plus `text_color` if needed. **Always pass `slides`**: without it, the text goes on every screenshot.
+4. **Other languages:** add `copy` entries with `locale` for each one. Translate the meaning and keep the lengths within the limits; never machine-copy the English.
 
 ## 6. Preview and refine
 
@@ -60,8 +62,8 @@ Call `preview_set` (for example `height: 600`) and **look at the image**. Check 
 
 - **Text:** readable, contrast strong enough, not clipped, and not covering important parts of the capture. Shorten the copy or set `wrap_headline: true` if it crowds the device.
 - **The set as a whole:** consistent, and the first three tell the story on their own. Those are what most people see.
-- **Variety:** the device angles vary but aren't wild. Use `set_pose` with `turn` and `tilt` (within about ±25°) or `auto_vary: true`.
-- **Spreads (optional):** for a hero, `spread_device` (count 2) can stretch one device across two screenshots.
+- **Variety:** the device angles vary but aren't wild. Use `edit_set` with `pose` entries: `turn` and `tilt` (within about ±25°), or `auto_vary: true`.
+- **Spreads (optional):** for a hero, an `edit_set` `spread` entry (`count: 2`) can stretch one device across two screenshots.
 
 Iterate until it's right. Then show the user the preview and ask if they want changes before exporting.
 
@@ -73,14 +75,14 @@ Iterate until it's right. Then show the user the preview and ask if they want ch
 - **If several devices share those folders,** pass `name_prefix` (for example `"iphone-"` and `"ipad-"`) so the files don't overwrite each other.
 - **Sizes:** the 6.9" iPhone and 13" iPad sizes are what App Store Connect needs. Use `all_sizes: true` only if the user asks for every size.
 
-Finish with `save_project`, then tell the user:
+Finish with `manage_project` (`action: "save"`), then tell the user:
 - where the files are;
-- that the `.twixit` project can be opened in Twixit to fine-tune (`open_in_editor` does it for them);
+- that the `.twixit` project can be opened in Twixit to fine-tune (`manage_project` with `action: "show_in_editor"` does it for them);
 - that every change you made can be undone there.
 
 ## Good to know
 
 - **Errors** come back as `isError` with an `error` code and a `message`. Read the message: it names the folder, size or id that was wrong.
-- **Unknown ids:** look them up with the `list_*` tools rather than guessing. Font ids are names like `"Space Grotesk"`.
+- **Unknown ids:** look them up with `get_info` (`include`) rather than guessing. Font ids are names like `"Space Grotesk"`.
 - **Screenshot numbers** start at 1. A set holds up to 10.
 - **Don't** put prices, "#1", rankings, other companies' names or claims the app can't back up in the copy (App Review guideline 2.3).
