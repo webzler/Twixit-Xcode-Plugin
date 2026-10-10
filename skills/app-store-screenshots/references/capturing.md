@@ -39,6 +39,10 @@ Good captures make good screenshots. Aim for a clean status bar, realistic conte
 
    If that's too much, using the primary language's captures for every language is acceptable. Mention it to the user.
 
+## iPhone Duo
+
+Run the app on an iPhone Duo, or in its Simulator if the installed Xcode has one (check `xcrun simctl list devicetypes`). Capture the outer display (1398 × 2034) for a set on the Outer sizes, which show the phone folded or standing open on a desk, and the inner display (2853 × 2007) for the Inner sizes, which show it unfolded. Choose the matching size in the set; the size decides which display shows the capture.
+
 ## Mac apps
 
 1. Run the app, size the window to a pleasant 16:10-ish size, and fill it with realistic content.

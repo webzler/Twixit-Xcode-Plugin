@@ -29,7 +29,7 @@ Ask for the root, not subfolders: one approval covers captures, the `.twixit` pr
 Before capturing anything, read enough of the project to answer these questions. Note the answers; every later step uses them.
 
 - **What it is:** the app's name, category, and the one thing it does best. Check the `Info.plist` display name, the README, any App Store text in `fastlane/metadata/`, and the main views.
-- **Platforms:** iPhone, iPad, Mac (look at the targets and their supported destinations).
+- **Platforms:** iPhone, iPad, Mac (look at the targets and their supported destinations). An iPhone app also runs on iPhone Duo, the foldable; make a Duo set only if the user asks for one or the app adapts its layout to the Duo's displays.
 - **The 3–6 screens that sell it:** the core action first, then the screens that show depth or delight. Skip settings, onboarding and empty states unless they're the point.
 - **Languages:** the languages in `Localizable.xcstrings` or the `*.lproj` folders. The source language is the primary one.
 - **Look and voice:** colours, fonts and tone. See [design-from-app.md](references/design-from-app.md).
@@ -38,6 +38,7 @@ Before capturing anything, read enough of the project to answer these questions.
 
 Follow [capturing.md](references/capturing.md). In short:
 - **iPhone or iPad:** build and run in a Simulator that matches the store size (6.9" iPhone, 13" iPad), set a clean status bar, open each screen with realistic sample data, and capture it.
+- **iPhone Duo:** capture on an iPhone Duo, or its Simulator if the installed Xcode has one: the outer display (1398 × 2034) for folded or desk shots, the inner display (2853 × 2007) for unfolded ones.
 - **Mac:** capture the app's window.
 
 Save the captures inside the granted project folder, for example `<project>/fastlane/captures/<device>/01-<screen>.png`. They are the inputs; Twixit never changes them.
@@ -46,7 +47,7 @@ Save the captures inside the granted project folder, for example `<project>/fast
 
 1. `get_info` with `include: ["starters", "fonts"]` (add `"patterns"` if you want a specific one).
 2. `manage_project` with `action: "create"`:
-   - `device`: `iphone`, `ipad` or `mac`. Use one set per device.
+   - `device`: `iphone`, `duo` (iPhone Duo), `ipad` or `mac`. Use one set per device.
    - `language`: the primary language.
    - `starter`: the starter whose mood is closest to the app.
    - `path`: `<project>/fastlane/Screenshots.twixit`, so the user can open and refine it later.
@@ -62,7 +63,7 @@ Call `preview_set` (for example `height: 600`) and **look at the image**. Check 
 
 - **Text:** readable, contrast strong enough, not clipped, and not covering important parts of the capture. Shorten the copy or set `wrap_headline: true` if it crowds the device.
 - **The set as a whole:** consistent, and the first three tell the story on their own. Those are what most people see.
-- **Variety:** the device angles vary but aren't wild. Use `edit_set` with `pose` entries: `turn` and `tilt` (within about ±25°), or `auto_vary: true`.
+- **Variety:** the device angles vary but aren't wild. Use `edit_set` with `pose` entries: `turn` and `tilt` (within about ±25°), or `auto_vary: true`. For iPhone Duo on an outer size, `fold` (0 folded, up to 150) opens it into a V standing on a desk.
 - **Spreads (optional):** for a hero, an `edit_set` `spread` entry (`count: 2`) can stretch one device across two screenshots.
 
 Iterate until it's right. Then show the user the preview and ask if they want changes before exporting.
@@ -73,7 +74,7 @@ Iterate until it's right. Then show the user the preview and ask if they want ch
 
 - **For fastlane `deliver`,** with one language, set `folder` to `<project>/fastlane/screenshots/<locale>`. With several languages, set `folder` to `<project>/fastlane/screenshots` and `locales: ["all"]`: Twixit makes one folder per language.
 - **If several devices share those folders,** pass `name_prefix` (for example `"iphone-"` and `"ipad-"`) so the files don't overwrite each other.
-- **Sizes:** the 6.9" iPhone and 13" iPad sizes are what App Store Connect needs. Use `all_sizes: true` only if the user asks for every size.
+- **Sizes:** the 6.9" iPhone and 13" iPad sizes are what App Store Connect needs. iPhone Duo has its own outer and inner sizes; App Store Connect lists them, but accepts uploads only from later in 2026. Use `all_sizes: true` only if the user asks for every size.
 
 Finish with `manage_project` (`action: "save"`), then tell the user:
 - where the files are;
