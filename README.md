@@ -11,7 +11,7 @@ Makes App Store screenshots for the app you're building, with [Twixit](https://t
 ## What's inside
 
 - **MCP server `twixit`:** connects the agent to Twixit. The server is part of the Twixit app; this plug-in only tells the agent how to start it (it finds Twixit in `/Applications`, or wherever it's installed).
-- **Skill `app-store-screenshots`:** the workflow, with guides for capturing screens, writing store copy, and matching the app's look.
+- **Skill `app-store-screenshots`:** tells the agent when to use Twixit and to get the workflow from it. The workflow and its guides (capturing screens, writing store copy, matching the app's look) come from the Twixit app, so they update with it; [`guides/`](guides) has a copy to read here.
 
 ## Requirements
 
@@ -27,7 +27,6 @@ Makes App Store screenshots for the app you're building, with [Twixit](https://t
   with Xcode 27 or later running.
 - **Manually in Xcode:** Settings › Intelligence › Plug-ins › **Add Plug-in…** › **Add from URL**, and enter
   `https://github.com/webzler/Twixit-Xcode-Plugin`.
-- **Offline:** in Twixit, choose **Save Plug-in Folder…**, then use **Add from file** in the same Xcode sheet.
 - **Other agents** that support plug-ins: add this repository as a plug-in source.
 
 Then ask the agent, for example: *"Make App Store screenshots for this app."*
