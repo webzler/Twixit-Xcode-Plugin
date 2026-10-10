@@ -32,3 +32,5 @@ Makes App Store screenshots for the app you're building, with [Twixit](https://t
 Then ask the agent, for example: *"Make App Store screenshots for this app."*
 
 This repository contains only the plug-in. Twixit itself is available on the Mac App Store.
+
+[Support](SUPPORT.md) · [Privacy policy](PRIVACY.md)
