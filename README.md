@@ -1,6 +1,6 @@
 # Twixit plug-in for coding agents
 
-Makes App Store screenshots for the app you're building, with [Twixit](https://twixit.app) for Mac. The agent:
+Makes App Store screenshots for the app you're building, with [Twixit](https://twixit.webzler.com) for Mac. The agent:
 
 1. captures the app's key screens;
 2. writes a headline and supporting text for each screen, in every language the app supports;
@@ -33,4 +33,4 @@ Then ask the agent, for example: *"Make App Store screenshots for this app."*
 
 This repository contains only the plug-in. Twixit itself is available on the Mac App Store.
 
-[Support](SUPPORT.md) · [Privacy policy](PRIVACY.md)
+[Website](https://twixit.webzler.com) · [Support](https://twixit.webzler.com/support/) · [Privacy policy](https://twixit.webzler.com/privacy/)
