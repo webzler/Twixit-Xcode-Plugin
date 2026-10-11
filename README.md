@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/logo.png" width="160" alt="Twixit"></p>
+
 # Twixit plug-in for coding agents
 
 Makes App Store screenshots for the app you're building, with [Twixit](https://twixit.webzler.com) for Mac. The agent:
