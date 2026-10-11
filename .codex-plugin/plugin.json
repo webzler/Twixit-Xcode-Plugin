@@ -1,0 +1,31 @@
+{
+  "name": "twixit",
+  "version": "1.0.0",
+  "description": "Make App Store screenshots with Twixit: capture your app's screens, write headline and supporting text for each, match your app's colours and fonts, and export every size and language.",
+  "author": {
+    "name": "Webzler Solutions Inc.",
+    "url": "https://twixit.webzler.com"
+  },
+  "homepage": "https://github.com/webzler/Twixit-Xcode-Plugin",
+  "repository": "https://github.com/webzler/Twixit-Xcode-Plugin",
+  "keywords": ["app store", "screenshots", "marketing", "fastlane", "localization"],
+  "mcpServers": "./.mcp.json",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Twixit",
+    "shortDescription": "Make App Store screenshots",
+    "longDescription": "Make App Store screenshots with Twixit: capture your app's screens, write headline and supporting text for each, match your app's colours and fonts, and export every size and language.",
+    "developerName": "Webzler Solutions Inc.",
+    "category": "Design",
+    "capabilities": [],
+    "logo": "./assets/logo.png",
+    "composerIcon": "./assets/composer-icon.png",
+    "brandColor": "#7C3AED",
+    "brandColorDark": "#7C3AED",
+    "websiteURL": "https://twixit.webzler.com",
+    "privacyPolicyURL": "https://twixit.webzler.com/privacy/",
+    "supportURL": "https://twixit.webzler.com/support/",
+    "defaultPrompt": ["Make App Store screenshots for this app"],
+    "screenshots": []
+  }
+}
